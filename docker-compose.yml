@@ -1,0 +1,45 @@
+version: '3'
+
+services:
+  # Django Service
+  backend:
+    image: python:3.11
+    build:
+      context: ./backend
+    command: bash -c "pip install -r requirements.txt && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    working_dir: /app
+    volumes:
+      - ./backend:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      - DJANGO_DB_HOST=db
+      - DJANGO_DB_PORT=5432
+      - DJANGO_DB_NAME=cs2skins
+      - DJANGO_DB_USER=admin
+      - DJANGO_DB_PASSWORD=admin
+
+  # Vue.js Service
+  frontend:
+    image: node:20
+    command: bash -c "npm install && npm run serve"
+    build:
+      context: ./frontend
+    volumes:
+      - ./frontend:/app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - backend
+
+  # PostgreSQL Service
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: cs2skins
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+    ports:
+      - "5432:5432"
