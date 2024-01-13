@@ -1,19 +1,16 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HomePage msg="Welcome to Your Vue.js App"/>
-  <LoginPage/>
+  <Navbar />
+  <router-view></router-view>
 </template>
 
 <script>
 
-import HomePage from './components/HomePage.vue'
-import LoginPage from './components/LoginPage.vue'
+import Navbar from './components/menu/NavbarMenu.vue';
 
 export default {
   name: 'App',
   components: {
-    HomePage,
-    LoginPage
+    Navbar
   }
 }
 </script>

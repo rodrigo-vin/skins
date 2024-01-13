@@ -43,9 +43,10 @@
           // Lógica para lidar com erros de autenticação
         }
       },
-      goToRegister() {
+      async goToRegister() {
         console.log("dahdjhadjkha")
         this.$router.push('/register'); // Ajuste o caminho conforme a rota de cadastro
+        console.log("dahdjhadjkha")
       }
     },
   };
