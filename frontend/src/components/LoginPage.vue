@@ -11,6 +11,7 @@
   
         <button type="submit">Login</button>
       </form>
+      <button @click="goToRegister">Cadastre-se</button>
     </div>
   </template>
   
@@ -42,8 +43,15 @@
           // Lógica para lidar com erros de autenticação
         }
       },
+      goToRegister() {
+        console.log("dahdjhadjkha")
+        this.$router.push('/register'); // Ajuste o caminho conforme a rota de cadastro
+      }
     },
   };
+
+
+  
   </script>
   
   <style scoped>
